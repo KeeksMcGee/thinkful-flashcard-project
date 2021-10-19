@@ -12,23 +12,24 @@ export default function EditDeck({ setUpdate, update }) {
   
   const handleDeckData = ({ target }) => 
   setDeckCurrent({...deckCurrent, [target.name]: target.value });
-  const abortController = new AbortController();
+ 
   
   useEffect(() => {
- 
+    const abortController = new AbortController();
     if (deckId !== null) {
       readDeck(deckId, abortController.signal)
         .then(setDeckCurrent)
         .catch((err) => console.log(err));
     }
     return () => abortController.abort();
-  }, [deckId]);
+  },[deckId]);
   
   function reloadData() {
     setUpdate(!update);
   }
   
   const submitDeck = () => {
+    const abortController = new AbortController();
     updateDeck({...deckCurrent}, abortController.signal)
     .then(reloadData())
       .then(history.push(`/decks/${deckId}`))

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { Link, useParams, useHistory, useRouteMatch } from "react-router-dom";
+import { Link, useParams, useHistory} from "react-router-dom";
 
 import { readDeck } from "../utils/api";
 
@@ -8,7 +8,6 @@ import NavBar from "./NavBar";
 export default function Study() {
   const [cardState, setCardState] = useState([true, 0]);
   const [deckCurrent, editDeckCurrent] = useState();
-  const { url } = useRouteMatch();
   const history = useHistory();
   const { deckId } = useParams();
 
